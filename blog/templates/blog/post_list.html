@@ -1,0 +1,10 @@
+{% for post in posts %}
+<h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+<p>{{ post.content|linebreaks }}</p>
+<p>Tags: {% for tag in post.tags.all %} {{ tag.name }} {% endfor %}</p>
+{% endfor %}
+
+<form method="GET" action="{% url 'search' %}">
+  <input type="text" name="q" placeholder="Search by tag" />
+  <button type="submit">Search</button>
+</form>
